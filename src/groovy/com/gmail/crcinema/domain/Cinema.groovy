@@ -8,6 +8,12 @@ package com.gmail.crcinema.domain
  * To change this template use File | Settings | File Templates.
  */
 public class Cinema {
+
+    public enum CinemaType {
+        NOVA_CINEMAS,
+        CINEMARK
+    }
+
     int id
     String name
     String address
