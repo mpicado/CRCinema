@@ -13,30 +13,36 @@ import groovyx.net.http.HTTPBuilder
  */
 public class CinemaUtils {
      public static String getHtmlFromUrl(String url, String path){
-         try{
-             def http = new HTTPBuilder()
-             String result = null
-             http.request( url, GET, TEXT ) { req ->
-                 uri.path = path
-                 //headers.'User-Agent' = "Mozilla/5.0 (Windows NT 6.1; rv:21.0) Gecko/20100101 Firefox/21.0"
-                 response.success = { resp, reader ->
-                     assert resp.statusLine.statusCode == 200
-                     //println "Got response: ${resp.statusLine}"
-                     //println "Content-Type: ${resp.headers.'Content-Type'}"
-                     result = reader.text
+
+         if(url != null && path != null){
+            try{
+                 def http = new HTTPBuilder()
+                 String result = null
+                 http.request( url, GET, TEXT ) { req ->
+                     uri.path = path
+                     //headers.'User-Agent' = "Mozilla/5.0 (Windows NT 6.1; rv:21.0) Gecko/20100101 Firefox/21.0"
+                     response.success = { resp, reader ->
+                         assert resp.statusLine.statusCode == 200
+                         //println "Got response: ${resp.statusLine}"
+                         //println "Content-Type: ${resp.headers.'Content-Type'}"
+                         result = reader.text
+                     }
+
+                     response.'404' = {
+                         println 'Not found'
+                     }
                  }
 
-                 response.'404' = {
-                     println 'Not found'
-                 }
+                 return result
              }
-
-             return result
-         }
-         catch (Exception e){
-             e.printStackTrace()
+             catch (Exception e){
+                 e.printStackTrace()
+                 return null
+             }
+         }else{
+             //Returning null when url and path are null
+             //TODO add LOGGER to display this messages
              return null
          }
-
      }
 }

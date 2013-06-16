@@ -1,8 +1,8 @@
 package com.gmail.crcinema.dao.impl
 
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 import com.gmail.crcinema.dao.ICinemaDao
 import com.gmail.crcinema.domain.Cinema
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import groovyx.net.http.HTTPBuilder
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
@@ -18,11 +18,14 @@ import com.gmail.crcinema.utils.CinemaUtils
  */
 public class HtmlProviderDaoImpl implements ICinemaDao {
 
-    def novaUrl = ConfigurationHolder.getConfig().grails.cinema.nova.url
-    def novaMovieListingPath = ConfigurationHolder.getConfig().grails.cinema.nova.movieListingUrl
+    //Dependency injection does not work for groovy classes under src/groovy
+    def grailsApplication = ApplicationHolder.application
 
     @Override
     Cinema getCinemaData(Cinema.CinemaType cinemaType) {
+        String novaUrl = grailsApplication.config.grails.cinema.nova.url
+        String novaMovieListingPath = grailsApplication.config.grails.cinema.nova.movieListingUrl
+
         String html = CinemaUtils.getHtmlFromUrl(novaUrl,novaMovieListingPath)
         Cinema cinema = HtmlParser.parseHtml(cinemaType,html)
         return cinema
