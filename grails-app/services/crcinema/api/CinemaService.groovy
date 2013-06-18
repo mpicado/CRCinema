@@ -6,9 +6,9 @@ import com.gmail.crcinema.dao.CinemaDataProviderFactory
 import com.gmail.crcinema.domain.DataProvider
 
 class CinemaService {
-    def cinemaHtmlDao = CinemaDataProviderFactory.getCinemaData(DataProvider.HTML_PARSER)
+    def cinemaHtmlDao
     //this can be used if the cinemas provide us an endpoint to work with!!
-    def cinemaWebServiceDao = CinemaDataProviderFactory.getCinemaData(DataProvider.WEB_SERVICE)
+    def cinemaWebServiceDao
 
     def getCinemaData(String cinemaType) {
         cinemaHtmlDao.getCinemaData(Cinema.CinemaType.valueOf(cinemaType))

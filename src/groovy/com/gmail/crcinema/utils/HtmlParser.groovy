@@ -6,6 +6,7 @@ import com.gmail.crcinema.domain.Movie
 import com.gmail.crcinema.domain.MovieGuideDetail
 import com.gmail.crcinema.domain.MovieGuide
 import grails.converters.JSON
+import groovyx.net.http.HTTPBuilder
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,21 +17,44 @@ import grails.converters.JSON
  */
 public class HtmlParser {
 
-    public static Cinema parseHtml(CinemaType cinemaType, String html){
-        if(CinemaType.NOVA_CINEMAS.equals(cinemaType)){
-            return parseNovaHtml(html)
-        }
-        else if(CinemaType.CINEMARK.equals(cinemaType)){
-            return parseCinemarkHtml(html)
+    public static Cinema parseHtml(CinemaType cinemaType, String url){
+        if(html && html != ""){
+            if(CinemaType.NOVA_CINEMAS.equals(cinemaType)){
+                return parseNovaHtml(url)
+            }
+            else if(CinemaType.CINEMARK.equals(cinemaType)){
+                return parseCinemarkHtml(url)
+            }
         }
 
         return null
     }
 
-    private static Cinema parseNovaHtml(String html){
-        //aqui deberia ir el parseo del html para empezar a armar el objeto
-        println(html)
-        //datos de prueba para el flujo entre las capas!
+    private static Cinema parseNovaHtml(String url){
+        def http = new HTTPBuilder(url)
+        def html = http.get([:])
+        def cinemaListing = html."**".findAll {
+            it.@class?.toString().contains("MovieSummaryRow")
+        }
+
+        def test = cinemaListing.collect {
+            [
+                    Name: it.TD[1].TABLE[0].TR[1].TD[1].A[0].text(),
+                    MovieDetailsUrl: it.TD[1].TABLE.TR[1].TD[1].A.@href.text()
+            ]
+        }
+        cinemaListing.each {
+            println(it)
+        }
+
+        return mockedCinemaResponse()
+    }
+
+    private static Cinema parseCinemarkHtml(String html){
+        return mockedCinemaResponse()
+    }
+
+    private static Cinema mockedCinemaResponse(){
         Movie movie = new Movie()
         movie.name = "Despues de la tierra"
         movie.genres = ["Ciencia ficcion"]
@@ -53,10 +77,6 @@ public class HtmlParser {
         cinema.address="Avenida Escazu"
         cinema.movieGuide = guide
         return cinema
-    }
-
-    private static Cinema parseCinemarkHtml(String html){
-        return new Cinema()
     }
 
 }
