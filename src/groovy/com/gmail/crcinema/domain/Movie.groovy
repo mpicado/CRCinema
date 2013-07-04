@@ -16,6 +16,7 @@ public class Movie {
     String director
     List<String> stars
     String restrictions
+    String imageUrl
     String thumbnailUrl
     String trailerUrl
 }
