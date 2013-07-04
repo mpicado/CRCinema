@@ -12,7 +12,7 @@ public class Movie {
     String name
     String description
     int minutes
-    List<String> genres
+    String genre
     String director
     List<String> stars
     String restrictions

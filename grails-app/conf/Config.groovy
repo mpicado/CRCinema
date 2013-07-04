@@ -62,8 +62,9 @@ grails.hibernate.cache.queries = false
 grails {
     cinema {
         nova{
-            url = "https://www.novacinemas.cr"
-            movieListingUrl = "/visinternetticketing/visMovies.aspx"
+            url = "https://www.novacinemas.cr/"
+            baseMoviesUrl = "visinternetticketing/"
+            movieListingUrl = "visMovies.aspx"
         }
     }
 }
