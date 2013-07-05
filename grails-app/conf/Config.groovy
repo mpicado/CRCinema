@@ -72,9 +72,11 @@ grails {
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.config.locations = ["${userHome}/config/crcinema-development.groovy"]
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.config.locations = ["${userHome}/config/crcinema-prod.groovy"]
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
