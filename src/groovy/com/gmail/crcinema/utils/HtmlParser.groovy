@@ -152,7 +152,24 @@ public class HtmlParser {
         return novaCinemaDetails(listMoviesGuides)
     }
 
-    private static Cinema parseCinemarkHtml(String html){
+    private static Cinema parseCinemarkHtml(String url){
+        def http = new HTTPBuilder(url)
+        def html = http.get([:])
+        def cinemaListing = html."**".findAll {
+            it.@class?.toString().contains("span-16")
+        }
+        cinemaListing.remove(0);//first object is not movie information
+
+        def test = cinemaListing.collect {
+            [
+                    Name: it.TD[1].TABLE[0].TR[1].TD[1].A[0].text(),
+                    MovieDetailsUrl: it.TD[1].TABLE.TR[1].TD[1].A.@href.text()
+            ]
+        }
+        cinemaListing.each {
+            println(it)
+        }
+
         return mockedCinemaResponse()
     }
 

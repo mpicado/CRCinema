@@ -66,6 +66,11 @@ grails {
             baseMoviesUrl = "visinternetticketing/"
             movieListingUrl = "visMovies.aspx"
         }
+        cinemark{
+            url = "http://www.cinemarkca.com/"
+            baseMoviesUrl = "multiplaza-escazu/"
+            movieListingUrl = "cartelera/"
+        }
     }
 }
 

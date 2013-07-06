@@ -33,8 +33,10 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
 
         }
         if(Cinema.CinemaType.CINEMARK.equals(cinemaType)){
-            html = ""
-            cinema = null
+            String novaUrl = grailsApplication.config.grails.cinema.cinemark.url
+            String baseMoviesUrl = grailsApplication.config.grails.cinema.cinemark.baseMoviesUrl
+            String novaMovieListingPath = grailsApplication.config.grails.cinema.cinemark.movieListingUrl
+            cinema = HtmlParser.parseHtml(cinemaType,novaUrl+baseMoviesUrl+novaMovieListingPath,novaUrl,baseMoviesUrl)
         }
         return cinema
     }
