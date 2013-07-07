@@ -160,14 +160,27 @@ public class HtmlParser {
         }
         cinemaListing.remove(0);//first object is not movie information
 
-        def test = cinemaListing.collect {
+        def firstDetails = cinemaListing?.collect {
             [
-                    Name: it.TD[1].TABLE[0].TR[1].TD[1].A[0].text(),
-                    MovieDetailsUrl: it.TD[1].TABLE.TR[1].TD[1].A.@href.text()
+                    spanishName: it.DIV[1].DIV[0].SPAN[0].SPAN[0].text(),
+                    englishName: it.DIV[1].DIV[0].SPAN[1].SPAN[0].text(),
+                    format: it.DIV[1].DIV[1].SPAN[1].SPAN[0].text(),
+                    runtime: it.DIV[1].DIV[1].SPAN[2].SPAN[0].text(),
+                    genre: it.DIV[1].DIV[1].SPAN[4].SPAN[0].text(),
+                    ageRate: it.DIV[1].DIV[1].SPAN[6].SPAN[0].text(),
+                    language: it.DIV[1].DIV[1].SPAN[8].text(),
             ]
         }
-        cinemaListing.each {
-            println(it)
+
+        firstDetails.each {
+            print("Spanish Name: " + it.spanishName)
+            print("English Name: " + it.englishName)
+            print("Format: " + it.format)
+            print("Runtime: " + it.runtime)
+            print("Genre: " + it.genre)
+            print("Age Rate: " + it.ageRate)
+            print("Language: " + it.language)
+            print("--------------")
         }
 
         return mockedCinemaResponse()
