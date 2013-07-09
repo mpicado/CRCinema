@@ -3,9 +3,8 @@ package com.gmail.crcinema.utils
 import com.gmail.crcinema.domain.Cinema
 import com.gmail.crcinema.domain.Cinema.CinemaType
 import com.gmail.crcinema.domain.Movie
-import com.gmail.crcinema.domain.MovieGuideDetail
 import com.gmail.crcinema.domain.MovieGuide
-import grails.converters.JSON
+import com.gmail.crcinema.domain.MovieGuideDetail
 import groovyx.net.http.HTTPBuilder
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -162,6 +161,7 @@ public class HtmlParser {
 
         def firstDetails = cinemaListing?.collect {
             [
+                    imageUrl: it.DIV[0].IMG[0].@src.text(),
                     spanishName: it.DIV[1].DIV[0].SPAN[0].SPAN[0].text(),
                     englishName: it.DIV[1].DIV[0].SPAN[1].SPAN[0].text(),
                     format: it.DIV[1].DIV[1].SPAN[1].SPAN[0].text(),
@@ -169,10 +169,15 @@ public class HtmlParser {
                     genre: it.DIV[1].DIV[1].SPAN[4].SPAN[0].text(),
                     ageRate: it.DIV[1].DIV[1].SPAN[6].SPAN[0].text(),
                     language: it.DIV[1].DIV[1].SPAN[8].text(),
+                    date: it.DIV[2].DIV[0].SPAN[0].text(),
+                    time: it.DIV[2].SPAN[0].SPAN[0].text(),
             ]
         }
 
+        def listMoviesGuides = []
+
         firstDetails.each {
+            print("Image URL: " + it.imageUrl)
             print("Spanish Name: " + it.spanishName)
             print("English Name: " + it.englishName)
             print("Format: " + it.format)
@@ -180,6 +185,8 @@ public class HtmlParser {
             print("Genre: " + it.genre)
             print("Age Rate: " + it.ageRate)
             print("Language: " + it.language)
+            print("Date: " + it.date)
+            print("Time: " + it.time)
             print("--------------")
         }
 
@@ -199,6 +206,21 @@ public class HtmlParser {
         cinema.movieGuide = guide
         return cinema
     }
+
+    private static Cinema cinemarkCinemaDetails(List<MovieGuideDetail> movieGuideDetailList){
+        MovieGuide guide = new MovieGuide()
+        guide.date = new Date()
+        guide.movieDetails = movieGuideDetailList
+
+        //We need to have the cinemas in a database and retrieve the value here, so we don't have it hardcoded
+        Cinema cinema = new Cinema()
+        cinema.id=2
+        cinema.name = "Cinemark Escazu"
+        cinema.address = "Multiplaza Escazu"
+        cinema.movieGuide = guide
+        return cinema
+    }
+
     /* Validation method to avoid some errors while
      * trying to gather the movies details
      *  */
