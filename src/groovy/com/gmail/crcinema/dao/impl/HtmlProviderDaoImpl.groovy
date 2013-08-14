@@ -40,4 +40,31 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
         }
         return cinema
     }
+
+    @Override
+    List<Cinema> getCinemas(){
+        //this should be going to a database, but since we do not have
+        //a db yet, then we are hardcoding the values
+        List<Cinema> list = []
+        Cinema novaCinemas = new Cinema()
+        novaCinemas.id = 1
+        novaCinemas.name = "Nova Cinemas"
+        novaCinemas.address = "Avenida Escazu"
+
+        Cinema multiplazaEscazu = new Cinema()
+        novaCinemas.id = 2
+        novaCinemas.name = "Cinemark Multiplaza Escazu"
+        novaCinemas.address = "Guachipelín de Escazú"
+
+        Cinema multiplazaDelEste = new Cinema()
+        novaCinemas.id = 3
+        novaCinemas.name = "Cinemark Multiplaza del Este"
+        novaCinemas.address = "Zapote"
+
+        list.add(novaCinemas)
+        list.add(multiplazaEscazu)
+        list.add(multiplazaDelEste)
+
+        return list;
+    }
 }

@@ -13,4 +13,8 @@ class CinemaService {
     def getCinemaData(String cinemaType) {
         cinemaHtmlDao.getCinemaData(Cinema.CinemaType.valueOf(cinemaType))
     }
+
+    def getCinemas() {
+        cinemaHtmlDao.getCinemas()
+    }
 }

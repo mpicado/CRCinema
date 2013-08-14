@@ -12,5 +12,6 @@ import com.gmail.crcinema.domain.Cinema
 public interface ICinemaDao {
 
     public Cinema getCinemaData(Cinema.CinemaType cinemaType)
+    public List<Cinema> getCinemas()
 
 }
