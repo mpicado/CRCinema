@@ -18,4 +18,7 @@ public class Cinema {
     String name
     String address
     MovieGuide movieGuide
+
+    //Android UI values needed
+    String buttonSelectorName
 }

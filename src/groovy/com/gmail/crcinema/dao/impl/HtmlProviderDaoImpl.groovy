@@ -52,14 +52,14 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
         novaCinemas.address = "Avenida Escazu"
 
         Cinema multiplazaEscazu = new Cinema()
-        novaCinemas.id = 2
-        novaCinemas.name = "Cinemark Multiplaza Escazu"
-        novaCinemas.address = "Guachipelín de Escazú"
+        multiplazaEscazu.id = 2
+        multiplazaEscazu.name = "Cinemark Multiplaza Escazu"
+        multiplazaEscazu.address = "Guachipelín de Escazú"
 
         Cinema multiplazaDelEste = new Cinema()
-        novaCinemas.id = 3
-        novaCinemas.name = "Cinemark Multiplaza del Este"
-        novaCinemas.address = "Zapote"
+        multiplazaDelEste.id = 3
+        multiplazaDelEste.name = "Cinemark Multiplaza del Este"
+        multiplazaDelEste.address = "Zapote"
 
         list.add(novaCinemas)
         list.add(multiplazaEscazu)
