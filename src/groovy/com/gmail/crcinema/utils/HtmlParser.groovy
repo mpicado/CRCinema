@@ -165,7 +165,7 @@ public class HtmlParser {
                     spanishName: it.DIV[1].DIV[0].SPAN[0].SPAN[0].text(),
                     englishName: it.DIV[1].DIV[0].SPAN[1].SPAN[0].text(),
                     format: it.DIV[1].DIV[1].SPAN[1].SPAN[0].text(),
-                    runtime: it.DIV[1].DIV[1].SPAN[2].SPAN[0].text(),
+                    runtime: it.DIV[1].DIV[1].SPAN[2].SPAN[0].text()?.minus(" min."),
                     genre: it.DIV[1].DIV[1].SPAN[4].SPAN[0].text(),
                     ageRate: it.DIV[1].DIV[1].SPAN[6].SPAN[0].text(),
                     language: it.DIV[1].DIV[1].SPAN[8].text(),
@@ -177,6 +177,7 @@ public class HtmlParser {
         def listMoviesGuides = []
 
         firstDetails.each {
+            /*
             print("Image URL: " + it.imageUrl)
             print("Spanish Name: " + it.spanishName)
             print("English Name: " + it.englishName)
@@ -188,9 +189,26 @@ public class HtmlParser {
             print("Date: " + it.date)
             print("Time: " + it.time)
             print("--------------")
+            */
+            //MovieGuide details
+            MovieGuideDetail movieGuideDetail = new MovieGuideDetail()
+            movieGuideDetail.times = [new Date()]
+
+            //Movie details
+            Movie movie = new Movie()
+            movie.name = it.englishName
+            movie.description = it.spanishName
+            movie.minutes = it.runtime as int
+            movie.genre = it.genre
+            movie.restrictions = it.ageRate
+            movie.imageUrl = it.imageUrl
+            movie.thumbnailUrl = it.imageUrl
+
+            movieGuideDetail.movie = movie
+            listMoviesGuides.add(movieGuideDetail)
         }
 
-        return mockedCinemaResponse()
+        return cinemarkCinemaDetails(listMoviesGuides)
     }
 
     private static Cinema novaCinemaDetails(List<MovieGuideDetail> movieGuideDetailList){
