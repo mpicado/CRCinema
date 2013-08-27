@@ -20,5 +20,5 @@ public class Cinema {
     MovieGuide movieGuide
 
     //Android UI values needed
-    String buttonSelectorName
+    String cinemaImageName
 }

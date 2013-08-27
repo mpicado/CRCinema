@@ -50,16 +50,19 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
         novaCinemas.id = 1
         novaCinemas.name = "Nova Cinemas"
         novaCinemas.address = "Avenida Escazu"
+        novaCinemas.cinemaImageName = "logo_novacinemas.9.png"
 
         Cinema multiplazaEscazu = new Cinema()
         multiplazaEscazu.id = 2
         multiplazaEscazu.name = "Cinemark Multiplaza Escazu"
         multiplazaEscazu.address = "Guachipelín de Escazú"
+        multiplazaEscazu.cinemaImageName = "logo_cinemark.9.png"
 
         Cinema multiplazaDelEste = new Cinema()
         multiplazaDelEste.id = 3
         multiplazaDelEste.name = "Cinemark Multiplaza del Este"
         multiplazaDelEste.address = "Zapote"
+        multiplazaDelEste.cinemaImageName = "logo_cinemark.9.png"
 
         list.add(novaCinemas)
         list.add(multiplazaEscazu)
