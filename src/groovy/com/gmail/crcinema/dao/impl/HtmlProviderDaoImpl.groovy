@@ -28,7 +28,6 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
             String novaUrl = grailsApplication.config.grails.cinema.nova.url
             String baseMoviesUrl = grailsApplication.config.grails.cinema.nova.baseMoviesUrl
             String novaMovieListingPath = grailsApplication.config.grails.cinema.nova.movieListingUrl
-            //html = CinemaUtils.getHtmlFromUrl(novaUrl,novaMovieListingPath)
             cinema = HtmlParser.parseHtml(cinemaType,novaUrl+baseMoviesUrl+novaMovieListingPath,novaUrl,baseMoviesUrl)
 
         }
@@ -64,9 +63,23 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
         multiplazaDelEste.address = "Zapote"
         multiplazaDelEste.cinemaImageName = "logo_cinemark.9.png"
 
+        Cinema ccmCinemasPaseoFlores = new Cinema()
+        ccmCinemasPaseoFlores.id = 4
+        ccmCinemasPaseoFlores.name = "CCM Cinemas Paseo de las Flores"
+        ccmCinemasPaseoFlores.address = "Heredia"
+        ccmCinemasPaseoFlores.cinemaImageName = "logo_cinemark.9.png"
+
+        Cinema ccmCinemasLincolnPlaza = new Cinema()
+        ccmCinemasLincolnPlaza.id = 5
+        ccmCinemasLincolnPlaza.name = "CCM Cinemas Lincoln Plaza"
+        ccmCinemasLincolnPlaza.address = "Moravia"
+        ccmCinemasLincolnPlaza.cinemaImageName = "logo_cinemark.9.png"
+
         list.add(novaCinemas)
         list.add(multiplazaEscazu)
         list.add(multiplazaDelEste)
+        list.add(ccmCinemasPaseoFlores)
+        list.add(ccmCinemasLincolnPlaza)
 
         return list;
     }
