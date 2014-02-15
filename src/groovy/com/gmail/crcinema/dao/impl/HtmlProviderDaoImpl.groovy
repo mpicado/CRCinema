@@ -50,30 +50,35 @@ public class HtmlProviderDaoImpl implements ICinemaDao {
         novaCinemas.name = "Nova Cinemas"
         novaCinemas.address = "Avenida Escazu"
         novaCinemas.cinemaImageName = "logo_novacinemas.9.png"
+        novaCinemas.cinemaType = Cinema.CinemaType.NOVA_CINEMAS
 
         Cinema multiplazaEscazu = new Cinema()
         multiplazaEscazu.id = 2
         multiplazaEscazu.name = "Cinemark Multiplaza Escazu"
         multiplazaEscazu.address = "Guachipelín de Escazú"
         multiplazaEscazu.cinemaImageName = "logo_cinemark.9.png"
+        multiplazaEscazu.cinemaType = Cinema.CinemaType.CINEMARK
 
         Cinema multiplazaDelEste = new Cinema()
         multiplazaDelEste.id = 3
         multiplazaDelEste.name = "Cinemark Multiplaza del Este"
         multiplazaDelEste.address = "Zapote"
         multiplazaDelEste.cinemaImageName = "logo_cinemark.9.png"
+        multiplazaDelEste.cinemaType = Cinema.CinemaType.CINEMARK_ESTE
 
         Cinema ccmCinemasPaseoFlores = new Cinema()
         ccmCinemasPaseoFlores.id = 4
         ccmCinemasPaseoFlores.name = "CCM Cinemas Paseo de las Flores"
         ccmCinemasPaseoFlores.address = "Heredia"
-        ccmCinemasPaseoFlores.cinemaImageName = "logo_cinemark.9.png"
+        ccmCinemasPaseoFlores.cinemaImageName = "logo_ccmcinemas.9.png"
+        ccmCinemasPaseoFlores.cinemaType = Cinema.CinemaType.CCM_PASEO
 
         Cinema ccmCinemasLincolnPlaza = new Cinema()
         ccmCinemasLincolnPlaza.id = 5
         ccmCinemasLincolnPlaza.name = "CCM Cinemas Lincoln Plaza"
         ccmCinemasLincolnPlaza.address = "Moravia"
-        ccmCinemasLincolnPlaza.cinemaImageName = "logo_cinemark.9.png"
+        ccmCinemasLincolnPlaza.cinemaImageName = "logo_ccmcinemas.9.png"
+        ccmCinemasLincolnPlaza.cinemaType = Cinema.CinemaType.CCM_LINCOLN
 
         list.add(novaCinemas)
         list.add(multiplazaEscazu)

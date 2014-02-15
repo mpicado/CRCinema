@@ -11,13 +11,17 @@ public class Cinema {
 
     public enum CinemaType {
         NOVA_CINEMAS,
-        CINEMARK
+        CINEMARK,
+        CINEMARK_ESTE,
+        CCM_PASEO,
+        CCM_LINCOLN
     }
 
     int id
     String name
     String address
     MovieGuide movieGuide
+    String cinemaType
 
     //Android UI values needed
     String cinemaImageName
