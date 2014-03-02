@@ -72,6 +72,19 @@ grails {
             movieListingUrl = "cartelera/"
         }
     }
+    cache.config = {
+        defaultCache {
+            maxElementsInMemory 10000
+            eternal false
+            timeToIdleSeconds 3600 //TODO update expire time of cache
+            timeToLiveSeconds 3600 //TODO update expire time of cache
+            overflowToDisk false
+            maxElementsOnDisk 0
+            diskPersistent false
+            diskExpiryThreadIntervalSeconds 120
+            memoryStoreEvictionPolicy 'LRU'
+        }
+    }
 }
 
 environments {
